@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pradeoscope/flux.dart';
 import 'package:pradeoscope/login.dart';
-//import 'package:pradeoscope/image_example.dart';
-
 
 void main() => runApp(new MyApp());
 
@@ -21,10 +19,9 @@ class MyApp extends StatelessWidget {
       routes: {
         "flux-page": (context) => FluxPage(),
         "login-page": (context) => LoginPage(),
-        "main-page": (context) => MyApp(),
       },
+      //home: LoginPage(),
       home: LoginPage(),
-      // home: MyHomePage(),
     );
   }
 }

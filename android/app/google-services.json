@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "337259108092",
+    "firebase_url": "https://pradeoscope.firebaseio.com",
+    "project_id": "pradeoscope",
+    "storage_bucket": "pradeoscope.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337259108092:android:3bbd2373b27e13f7",
+        "android_client_info": {
+          "package_name": "com.example.pradeoscope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337259108092-29q6f5vrq8vr3v80m4sktbjci3gusgfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pradeoscope",
+            "certificate_hash": "310673f1017fbd6073f7e247e57a245c47b90b49"
+          }
+        },
+        {
+          "client_id": "337259108092-qpcccaukdc4c674b0qpt9lv0unq2ptnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvcf0UDeUiXeG2aOTy_eAQacysWsQxMN8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337259108092-qpcccaukdc4c674b0qpt9lv0unq2ptnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

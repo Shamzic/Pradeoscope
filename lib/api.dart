@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -32,5 +33,27 @@ class FBApi {
     assert(user.uid == currentUser.uid);
 
     return FBApi(user);
+  }
+
+  static void handleSignOut() async {
+    _googleSignIn.disconnect();
+  }
+
+  static void logout() {
+    Firestore.instance.runTransaction((transaction) async {
+      FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+      QuerySnapshot querySnapshot = await Firestore.instance.collection("connected_users")
+        .getDocuments();
+      var list = querySnapshot.documents;
+      list.forEach((doc) {
+        if (doc.data['userID'] == currentUser.uid) {
+          print('disconnected :::: ');
+          print(doc.data['userName']);
+          doc.reference.updateData({'connected': false});
+          handleSignOut();
+          return;
+        }
+      });
+    });
   }
 }

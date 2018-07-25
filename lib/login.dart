@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ui' show ImageFilter;
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pradeoscope/api.dart';
 
@@ -8,6 +10,28 @@ class LoginPage extends StatelessWidget {
   Future<bool> _loginUser() async {
     final api = await FBApi.signInWithGoogle();
     if (api != null) {
+      Firestore.instance.runTransaction((transaction) async {
+        FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+        CollectionReference reference = Firestore.instance.collection('connected_users');
+        QuerySnapshot querySnapshot = await Firestore.instance.collection("connected_users")
+          .getDocuments();
+        var list = querySnapshot.documents;
+        var alreadyREgistered = false;
+        list.forEach((doc) {
+          if (doc.data['userID'] == currentUser.uid) {
+            doc.reference.updateData({'connected': true});
+            alreadyREgistered = true;
+          }
+        });
+        if (!alreadyREgistered) {
+          await reference.add({
+            "userID": currentUser.uid,
+            "userName": currentUser.displayName,
+            "connected": true,
+            "photoURL": currentUser.photoUrl,
+          });
+        }
+      });
       return true;
     } else {
       return false;
@@ -70,6 +94,14 @@ class LoginPage extends StatelessWidget {
                         },
                         textColor: Colors.white.withOpacity(0.9),
                         child: Text('Sign in'),
+                      ),
+                      FlatButton(
+                        color: Colors.black54,
+                        onPressed: () async {
+                          FBApi.logout();
+                        },
+                        textColor: Colors.white.withOpacity(0.9),
+                        child: Text('Disconnect'),
                       )
                     ],
                   ),
