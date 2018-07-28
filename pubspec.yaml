@@ -11,8 +11,8 @@ dependencies:
   firebase_auth: "0.5.9"
   google_sign_in: "3.0.3"
   cloud_firestore: "0.7.0"
-  image_picker: "0.4.5"
-  firebase_storage: "1.0.0"
+  image_picker: "0.4.6"
+  firebase_storage: "1.0.1"
 
 dev_dependencies:
   flutter_test:

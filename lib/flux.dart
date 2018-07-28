@@ -20,7 +20,7 @@ class _MyImagePickerState extends State<MyImagePicker> {
   String _path;
   
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
     
     setState(() {
       _image = image;
